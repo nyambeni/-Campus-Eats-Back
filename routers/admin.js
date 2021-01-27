@@ -1,10 +1,10 @@
 //admmmin can delete a userAgent
-
+var connection = require('../Config/conn'); 
 
 
 exports.deleteCustomer = async function(request, response) {
    //console.log(req.body);
-   connection.query('DELETE FROM users where Email=?', [req.params.email], function (error, results, fields) {
+   connection.query('DELETE FROM users where id=?', [req.params.id], function (error, results, fields) {
 	  if (error) throw error;
 	  res.end('User has been deleted!');
 	});
@@ -12,13 +12,21 @@ exports.deleteCustomer = async function(request, response) {
 
 //These are the things the admin can do for order
 
-//REST API TO GET ALL Orders
+//REST API TO GET ALL users
 exports.viewAllCustomer = async function(request, response) {
-   connection.query('select * from ordertable', function (error, results, fields) {
-	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+   connection.query('SELECT * FROM users', function (error, results, fields) {
+	 if (results.length == 0) {
+		 console.log("Oops... Something went wrong")
+	 }else{
+		  response.send('view users');
+		  console.log(results);
+			
+			//response.end(JSON.stringify(results));
+	  }
 	});
 }
+
+
 
 //rest api to get a single ORDER data
 exports.viewCustomer = async function(request, response) {

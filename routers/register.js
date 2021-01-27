@@ -1,4 +1,4 @@
-
+var connection = require('../Config/conn'); 
 
 exports.register =async function(request, response) {
 	

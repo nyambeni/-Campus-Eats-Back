@@ -1,3 +1,5 @@
+var connection = require('../Config/conn'); 
+
 //rest api to get a single ORDER data
 exports.viewOrder = async function(request, response) {
    connection.query('select * from ordertable where orderNo=?', [req.params.id], function (error, results, fields) {

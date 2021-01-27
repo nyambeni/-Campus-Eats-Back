@@ -55,8 +55,8 @@ app.post('/customerInsert',client.order);
 
 
 //These are routers fror admin
-app.delete('/deleteCustomer/:email',admin.deleteCustomer);
-app.get('/viewCustomer',admin.viewAllCustomer);
+app.delete('/deleteCustomer/:id',admin.deleteCustomer);
+app.get('/viewAllCustomer',admin.viewAllCustomer);
 app.get('/customer:id',admin.viewCustomer);
 app.delete('/deleteO/:orderNo',admin.deleteO);
 app.get('/pendingOrder',admin.pendingOrder);

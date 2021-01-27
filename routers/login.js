@@ -1,3 +1,5 @@
+var connection = require('../Config/conn'); 
+
 /*//this will automatically take you to the login page
 app.get('/', function(request, response) {
     response.sendFile(path.join(__dirname + '/login.js'));
