@@ -4,7 +4,7 @@ var connection = require('../Config/conn');
 
 exports.deleteCustomer = async function(request, response) {
    //console.log(req.body);
-   connection.query('DELETE FROM users where id=?', [req.params.id], function (error, results, fields) {
+   connection.query('DELETE FROM users where id=?', [request.params.id], function (error, results, fields) {
 	  if (error) throw error;
 	  res.end('User has been deleted!');
 	});
@@ -13,15 +13,15 @@ exports.deleteCustomer = async function(request, response) {
 //These are the things the admin can do for order
 
 //REST API TO GET ALL users
-exports.viewAllCustomer = async function(request, response) {
+exports.viewAllCustomer = (request, response)=> {
    connection.query('SELECT * FROM users', function (error, results, fields) {
-	 if (results.length == 0) {
-		 console.log("Oops... Something went wrong")
+	 if (!results) {
+		 console.log("Oops... Something went wrong");
 	 }else{
-		  response.send('view users');
-		  console.log(results);
+		  //response.send({data:'view users'});
+		  response.send(results);
 			
-			//response.end(JSON.stringify(results));
+			//response.send(JSON.stringify(results));
 	  }
 	});
 }
@@ -29,10 +29,10 @@ exports.viewAllCustomer = async function(request, response) {
 
 
 //rest api to get a single ORDER data
-exports.viewCustomer = async function(request, response) {
-   connection.query('select * from ordertable where orderNo=?', [req.params.id], function (error, results, fields) {
+exports.viewCustomer = (request, response) =>{
+   connection.query('select * from ordertable where orderNo=?', [request.params.id], function (error, results, fields) {
 	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  response.send(results);
 	});
 }
 
@@ -40,9 +40,9 @@ exports.viewCustomer = async function(request, response) {
 //REST API TO DELETE ORDER
 exports.deleteO = async function(request, response) {
    //console.log(req.body);
-   connection.query('DELETE FROM ordertable where orderNo=?', [req.params.orderNo], function (error, results, fields) {
+   connection.query('DELETE FROM ordertable where orderNo=?', [request.params.orderNo], function (error, results, fields) {
 	  if (error) throw error;
-	  res.end('Record has been deleted!');
+	  response.send('Record has been deleted!');
 	});
 }
 
@@ -53,7 +53,7 @@ exports.deleteO = async function(request, response) {
 exports.pendingOrder = async function(request, response) {
    connection.query("select * from ordertable WHERE orderStatus = 'pending'", function (error, results, fields) {
 	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  response.send(results);
 	});
 }
 
@@ -62,7 +62,7 @@ exports.pendingOrder = async function(request, response) {
 exports.waitingOrder = async function(request, response) {
    connection.query("select * from ordertable WHERE orderStatus = 'waiting'", function (error, results, fields) {
 	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  response.send(results);
 	});
 }
 
@@ -71,7 +71,7 @@ exports.waitingOrder = async function(request, response) {
 exports.collected = async function(request, response) {
    connection.query("select * from ordertable WHERE orderStatus = 'collected'", function (error, results, fields) {
 	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  response.send(results);
 	});
 }
 

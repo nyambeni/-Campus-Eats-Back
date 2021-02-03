@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2021 at 12:15 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Generation Time: Feb 03, 2021 at 02:11 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,9 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `menu` (
-  `itemNo` varchar(200) NOT NULL,
-  `item` varchar(200) NOT NULL,
-  `price` int(20) NOT NULL
+  `itemNo` int(11) NOT NULL,
+  `kotaName` varchar(200) NOT NULL,
+  `itemDesc` varchar(200) NOT NULL,
+  `price` int(20) NOT NULL,
+  `picture` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,28 +69,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Id`, `Name`, `Email`, `Password`, `Roles`, `Created_on`) VALUES
-(1, 'Jali', 'Mnisi@gmail.comm', 'hello', 'user', '2020-12-16 16:41:59'),
-(3, 'Tibi', 'Tibi@gmail.com', 'its abowt tym', 'User', '2020-12-16 16:57:38'),
-(4, 'John', 'john@gmail.com', 'Tym to rest now', 'ADMIN', '2020-12-16 17:26:23'),
-(5, 'John', 'john@gmail.com', 'Tym to rest now', 'ADMIN', '2020-12-16 21:00:16'),
-(6, 'John', 'john@gmail.com', 'Tym to rest now', 'ADMIN', '2020-12-16 21:05:43'),
-(8, '$scope.name', '$scope.email', '$scope.pswd', '$scope.roles', '2020-12-17 14:01:47'),
-(9, '$scope.name', '$scope.email', '$scope.pswd', '$scope.roles', '2020-12-17 14:04:01'),
-(10, 'jali', 'j.mnisi.c.jm@gmail.com', '#Mdawekamatla1', 'customer', '2021-01-21 11:41:24'),
-(11, 'Jali Mnisi', 'j.mnisi@gmail.com', '123456', 'admin', '2021-01-21 22:16:48'),
-(12, 'Jali Mnisi', 'j.mdawe@gmail.com', '123456', 'admin', '2021-01-21 22:22:39'),
-(13, 'Jali Mnisi', 'j.sina@gmail.com', '123456', 'admin', '2021-01-21 22:23:39'),
-(14, 'Jali Mdawwe', 'j.lee@gmail.com', '123456', 'admin', '2021-01-21 22:26:20'),
-(15, 'Jali Mdawwe', 'j.lee@gmail', '123456', 'admin', '2021-01-22 12:18:22'),
-(16, 'Jali Mdawwe', 'j.lee.com', '123456', 'admin', '2021-01-22 12:19:10'),
-(17, 'Jali Mdawwe', 'j.lee.co@haha.com', '123456', 'admin', '2021-01-26 12:27:32'),
-(18, 'Jali Mdawwe', 'j.lee.co@haha.co', '123456', 'admin', '2021-01-27 10:41:27'),
-(19, 'Jali Mdawwe', 'j.lee.coha@ha.com', '123456', 'admin', '2021-01-27 10:44:59'),
-(20, 'Jali Mdawwe', 'j.lee.coha@haha.com', '123456', 'admin', '2021-01-27 10:47:15');
+(3, 'Charles', 'jali@gov.com', '$2b$10$T4Uu1FhuuEjRt1tHgPRLW.JPJYsWaVbAw3G7V3HvQUleE70LRXa7C', 'customer', '2021-02-03 09:46:21'),
+(4, 'Charles', 'jali@go.com', '$2b$10$K8CD/THsH2cr9PJzAFfRpuYGBxOQGBCbngr5cx87KgDQEcH7lr1ce', 'customer', '2021-02-03 09:47:24'),
+(5, 'Charles', 'jali@google.com', '$2b$10$bmte5s6SBhHLkcucLj1.GOTMNseKOFYlNehWlC8FCe58vZ9H/p5hu', 'customer', '2021-02-03 09:48:45'),
+(6, 'Charles', 'jali@ICEP.com', '$2b$10$Jr/mmOzAPbpRw5zr9qshAOhK/cSUSX8JfePXKfZvE0ZSyJn2nssW6', 'owner', '2021-02-03 09:49:22');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`itemNo`);
 
 --
 -- Indexes for table `ordertable`
@@ -107,16 +101,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `itemNo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ordertable`
 --
 ALTER TABLE `ordertable`
-  MODIFY `orderNo` int(200) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderNo` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
